@@ -8,6 +8,7 @@
 import UIKit
 import WebKit
 import os.log
+import Nexum
 
 enum RescueViewControllerState {
     
@@ -22,6 +23,7 @@ enum RescueViewControllerState {
 class RescueViewController: UIViewController, WKNavigationDelegate {
     
     var webView: WKWebView?
+    let network: NXNetwork?
     var state: RescueViewControllerState {
         didSet {
             self.updateState()
@@ -29,11 +31,19 @@ class RescueViewController: UIViewController, WKNavigationDelegate {
     }
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var retryButton: UIButton!
     
     required init?(coder aDecoder: NSCoder) {
         
         self.state = .initial
+        self.network = NXNetwork(hostName: RescueConfig.rescueURL.host!)
+        
         super.init(coder: aDecoder)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNetworkChange), name: NSNotification.Name(rawValue: NXNetworkReachabilityStatusChanged), object: nil)
+        
+        self.network?.startListening()
         
     }
     
@@ -83,17 +93,23 @@ class RescueViewController: UIViewController, WKNavigationDelegate {
             
             self.loadingIndicator.startAnimating()
             self.webView?.isHidden = true
+            self.errorLabel.isHidden = true
+            self.retryButton.isHidden = true
             
         } else if self.state == .loaded {
             
-            self.webView?.isHidden = false
             self.loadingIndicator.stopAnimating()
+            self.webView?.isHidden = false
+            self.errorLabel.isHidden = true
+            self.retryButton.isHidden = true
 
             
         } else if self.state == .error {
             
             self.loadingIndicator.stopAnimating()
             self.webView?.isHidden = true
+            self.errorLabel.isHidden = false
+            self.retryButton.isHidden = false
 
         }
         
@@ -105,6 +121,27 @@ class RescueViewController: UIViewController, WKNavigationDelegate {
         request.cachePolicy = .reloadIgnoringLocalCacheData
         
         self.webView?.load(request)
+        
+    }
+    
+    @objc private func handleNetworkChange() {
+        
+        os_log("App Reachability Changed", log: RescueLog.defaultLog, type: .info)
+        
+        if self.network?.reachabilityStatus == NXNetworkReachabilityStatus.notReachable {
+            
+            self.webView?.stopLoading()
+            self.state = .error
+            
+        } else {
+            
+            if self.state == .error {
+                
+                self.loadWebApp()
+                
+            }
+            
+        }
         
     }
     
@@ -137,6 +174,12 @@ class RescueViewController: UIViewController, WKNavigationDelegate {
         os_log("Finished Navigation to %@", log: RescueLog.defaultLog, type: .info, (webView.url?.absoluteString)!)
         
         self.state = .loaded
+        
+    }
+    
+    @IBAction func userRetry(_ sender: Any) {
+        
+        self.loadWebApp()
         
     }
     

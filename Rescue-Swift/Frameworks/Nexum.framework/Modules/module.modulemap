@@ -1,0 +1,6 @@
+framework module Nexum {
+    umbrella header "Nexum.h"
+    
+    export *
+    module * { export * }
+}

@@ -14,6 +14,7 @@
 		078726F420A3741500BDEFB4 /* RescueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078726F320A3741500BDEFB4 /* RescueViewController.swift */; };
 		078726F620A37ED200BDEFB4 /* RescueLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078726F520A37ED200BDEFB4 /* RescueLog.swift */; };
 		078726F820A37F4700BDEFB4 /* RescueConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078726F720A37F4700BDEFB4 /* RescueConfig.swift */; };
+		078726FB20A3835900BDEFB4 /* Nexum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078726FA20A3835900BDEFB4 /* Nexum.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		078726F320A3741500BDEFB4 /* RescueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescueViewController.swift; sourceTree = "<group>"; };
 		078726F520A37ED200BDEFB4 /* RescueLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescueLog.swift; sourceTree = "<group>"; };
 		078726F720A37F4700BDEFB4 /* RescueConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescueConfig.swift; sourceTree = "<group>"; };
+		078726FA20A3835900BDEFB4 /* Nexum.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nexum.framework; path = "Rescue-Swift/Frameworks/Nexum.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078726FB20A3835900BDEFB4 /* Nexum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 			children = (
 				078726E220A3740B00BDEFB4 /* Rescue-Swift */,
 				078726E120A3740B00BDEFB4 /* Products */,
+				078726F920A3835800BDEFB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +72,14 @@
 				078726F720A37F4700BDEFB4 /* RescueConfig.swift */,
 			);
 			path = "Rescue-Swift";
+			sourceTree = "<group>";
+		};
+		078726F920A3835800BDEFB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				078726FA20A3835900BDEFB4 /* Nexum.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +233,10 @@
 				DEVELOPMENT_TEAM = Y88YPD4RJA;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Rescue-Swift/Frameworks",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -293,6 +309,10 @@
 				DEVELOPMENT_TEAM = Y88YPD4RJA;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Rescue-Swift/Frameworks",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

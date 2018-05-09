@@ -22,20 +22,44 @@
                                 <rect key="frame" x="169" y="325" width="37" height="37"/>
                                 <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHb-cT-6vm">
+                                <rect key="frame" x="16" y="333" width="343" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="RRz-yF-AN5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyt-I1-4dc">
+                                <rect key="frame" x="169" y="617" width="37" height="30"/>
+                                <state key="normal" title="Retry"/>
+                                <connections>
+                                    <action selector="userRetry:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M9H-xA-cxg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="LHb-cT-6vm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2Wj-7n-x75"/>
+                            <constraint firstItem="LHb-cT-6vm" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Ibx-H6-QEY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Xyt-I1-4dc" secondAttribute="bottom" constant="20" id="Kct-z6-sjO"/>
                             <constraint firstItem="Wgr-1h-UrR" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="UtX-NT-TBa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LHb-cT-6vm" secondAttribute="trailing" constant="16" id="cKS-fi-H8k"/>
                             <constraint firstItem="Wgr-1h-UrR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cbz-kE-vzw"/>
+                            <constraint firstItem="Xyt-I1-4dc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="jmN-F4-Cn7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="errorLabel" destination="LHb-cT-6vm" id="mc9-Cz-4ZR"/>
                         <outlet property="loadingIndicator" destination="Wgr-1h-UrR" id="gaC-ES-dXS"/>
+                        <outlet property="retryButton" destination="Xyt-I1-4dc" id="yYl-5D-5zu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="31.934032983508249"/>
         </scene>
     </scenes>
 </document>
